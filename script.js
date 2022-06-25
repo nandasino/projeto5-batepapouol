@@ -1,5 +1,4 @@
 let mensagens;
-buscarMensagens();
 cadastrarUsuario();
 function buscarMensagens() {
     const promessa = axios.get(
@@ -39,4 +38,13 @@ function cadastrarUsuario(){
   const novoUsuario ={
     name: nome,
   };
+  const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants",novoUsuario);
+  promise.then(buscarMensagens);
+  promise.catch(alertaErro);
+}
+function alertaErro(error){
+  if(error.response.status === 400){
+    alert("Já existe um usuário com esse nome");
+    cadastrarUsuario();
+  }
 }
