@@ -24,12 +24,12 @@ function buscarMensagens() {
         console.log(tipo);
         if (tipo === "status"){
             addMsg.innerHTML +=`
-            <h1>Aqui vai um status</h1>
+            <li class="status">(${mensagens[i].time})<span> ${mensagens[i].from} </span>${mensagens[i].text}</li>
             `
         }
         else if (tipo === "message"){
             addMsg.innerHTML += `
-            <h1>Aqui vai uma mensagem</h1>            `
+            <li class="texto">(${mensagens[i].time})<span>${mensagens[i].from}</span> para <span>${mensagens[i].to}</span>:${mensagens[i].text}</li>`
         }
     }
   }
