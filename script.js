@@ -1,4 +1,5 @@
 let mensagens;
+let user;
 cadastrarUsuario();
 function buscarMensagens() {
     const promessa = axios.get(
@@ -36,8 +37,9 @@ function buscarMensagens() {
 function cadastrarUsuario(){
   const nome = prompt("seu lindo nome:");
   const novoUsuario ={
-    name: nome,
+    name: nome
   };
+  user = novoUsuario;
   const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants",novoUsuario);
   promise.then(buscarMensagens);
   promise.catch(alertaErro);
@@ -47,4 +49,16 @@ function alertaErro(error){
     alert("Já existe um usuário com esse nome");
     cadastrarUsuario();
   }
+}
+function enviarMensagem(){
+  const texto = document.querySelector("input").value;
+  const novaMensagem = {
+    from: user.name,
+    to: "Todos",
+    text: texto,
+    type: "message"
+  }
+  console.log(novaMensagem);
+  const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages",novaMensagem);
+  promise.then(buscarMensagens);
 }
