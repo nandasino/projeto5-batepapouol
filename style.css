@@ -65,10 +65,12 @@ input{
 }
 .mensagens li{
     width: 100%;
-    display: flex;
+    display: block;
     align-items: center;
     min-height: 40px;
     margin-bottom: 4px;
+    padding: 8px 10px 8px 10px;
+    box-sizing: border-box;
 }
 .status{
     background-color: #DCDCDC;

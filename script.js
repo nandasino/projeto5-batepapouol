@@ -1,5 +1,6 @@
 let mensagens;
 buscarMensagens();
+cadastrarUsuario();
 function buscarMensagens() {
     const promessa = axios.get(
       "https://mock-api.driven.com.br/api/v6/uol/messages"
@@ -29,7 +30,13 @@ function buscarMensagens() {
         }
         else if (tipo === "message"){
             addMsg.innerHTML += `
-            <li class="texto">(${mensagens[i].time})<span>${mensagens[i].from}</span> para <span>${mensagens[i].to}</span>:${mensagens[i].text}</li>`
+            <li class="texto">(${mensagens[i].time})<span> ${mensagens[i].from}</span> para <span>${mensagens[i].to}</span>: ${mensagens[i].text}</li>`
         }
     }
   }
+function cadastrarUsuario(){
+  const nome = prompt("seu lindo nome:");
+  const novoUsuario ={
+    name: nome,
+  };
+}
