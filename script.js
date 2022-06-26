@@ -57,7 +57,8 @@ function online(){
   const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', novoUsuario);
 }
 function manterConexao(){
-  setInterval(online, 4000);
+  setInterval(online, 5000);
+  setInterval(buscarMensagens,3000);
 }
 function enviarMensagem(){
   const texto = document.querySelector("input").value;
