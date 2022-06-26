@@ -79,6 +79,9 @@ input{
 .texto{
     background-color: #FFFFFF;
 }
+.privada{
+    background-color: #FFDEDE;
+}
 span{
     font-weight: bold !important;
 }

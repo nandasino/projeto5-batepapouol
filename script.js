@@ -34,6 +34,10 @@ function buscarMensagens() {
             addMsg.innerHTML += `
             <li class="texto">(${mensagens[i].time})<span> ${mensagens[i].from}</span> para <span>${mensagens[i].to}</span>: ${mensagens[i].text}</li>`
         }
+        else if (tipo === "private_message" && mensagens[i].to === nome){
+          addMsg.innerHTML += `
+          <li class="privada">(${mensagens[i].time})<span> ${mensagens[i].from}</span> para <span>${mensagens[i].to}</span>: ${mensagens[i].text}</li>`
+      }
     }
   }
 function cadastrarUsuario(){
@@ -71,4 +75,8 @@ function enviarMensagem(){
   console.log(novaMensagem);
   const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", novaMensagem);
   promise.then(buscarMensagens);
+  promise.catch(reiniciaPagina);
+}
+function reiniciaPagina(error){
+  window.location.reload();
 }
