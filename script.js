@@ -11,9 +11,6 @@ function buscarMensagens() {
   }
   function popularMensagens(resposta) {
     console.log(resposta);
-    if (resposta.status === 200) {
-      console.log("Deuuu boooom");
-    }
     mensagens= resposta.data;
     console.log(mensagens);
     renderizarMensagens();
@@ -39,6 +36,8 @@ function buscarMensagens() {
           <li class="privada">(${mensagens[i].time})<span> ${mensagens[i].from}</span> para <span>${mensagens[i].to}</span>: ${mensagens[i].text}</li>`
       }
     }
+  const ultimaMensagem = document.querySelector(".mensagens").lastElementChild;
+  ultimaMensagem.scrollIntoView();
   }
 function cadastrarUsuario(){
   nome = prompt("seu lindo nome:");
@@ -75,8 +74,12 @@ function enviarMensagem(){
   console.log(novaMensagem);
   const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", novaMensagem);
   promise.then(buscarMensagens);
+  promise.then(limparInput);
   promise.catch(reiniciaPagina);
 }
 function reiniciaPagina(error){
   window.location.reload();
+}
+function limparInput(){
+  document.querySelector('input').value = "";
 }
